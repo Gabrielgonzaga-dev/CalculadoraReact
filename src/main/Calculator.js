@@ -6,19 +6,51 @@ import Button from '../components/Button/Button'
 class Calculator extends Component {
 
     state = {
-        displayValue: '0',
+         displayValue: '0',
+         num1: [0,0],
+         operation: null,
+         result: null,
     }
 
     clearMemory = () => {
-        this.setState({displayValue: 0})
+        this.setState({displayValue: '0'}),
+        this.setState({num1: [0]}),
+        this.setState({num1: [1]})
     }
 
-    setOperation = (operation) => {
-        this.setState({displayValue: operation})
-    }
+    
 
     addDigit = (digit) => {
+        if( operation.label != "-" && "+" && "*" && "/"){
         this.setState({displayValue: digit})
+        this.setState({num1:[digit]})
+        this.setState({displayValue: num1[0]})
+        console.log(num1[0])
+        }
+        
+
+    }
+    setOperation = (operation) => {
+        if(operation == "-"){
+        let result = this.setState.num1[0] - this.setState.num2[1]
+        this.setState({displayValue: result})
+        return result
+        
+        }else if(operation == "+"){
+        let result = this.setState.num1[0] + this.setState.num2[1]
+        this.setState({displayValue: result})
+        return result
+        
+        }else if(operation == "*"){
+        let result = this.setState.num1[0] * this.setState.num2[1]
+        this.setState({displayValue: result})
+        return result        
+        }else if(operation == "/"){
+            let result = this.setState.num1[0] / this.setState.num2[1]
+            this.setState({displayValue: result})
+        return result
+           
+        }
     }
 
     render() {
