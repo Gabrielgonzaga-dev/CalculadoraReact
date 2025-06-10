@@ -42,18 +42,19 @@ Este projeto é uma calculadora desenvolvida utilizando **React**, **Bootstrap 5
 
 
 2. Acesse a pasta do projeto:
-``bash´´
-cd nome-da-pasta
+   ```bash´´
+   cd nome-da-pasta
+
 
 
 3. Instale as dependências:
-``bash´´
-npm install
+   ```bash´´
+   npm install
 
 
 4. Inicie o servidor de desenvolvimento:
-``bash´´
-npm start
+   ```bash´´
+   npm start
 
 
 5. Abra o navegador e acesse:
