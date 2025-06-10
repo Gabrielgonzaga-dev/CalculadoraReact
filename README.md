@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Calculadora React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Calculadora](./src/assets/images/Calculadora.png)
 
-## Available Scripts
+## Descrição
 
-In the project directory, you can run:
+Este projeto é uma calculadora desenvolvida utilizando **React**, **Bootstrap 5**, **CSS** e **JavaScript**. Ela permite realizar operações matemáticas básicas como **adição (+), subtração (-), multiplicação (x) e divisão (/)**, além de uma funcionalidade específica para cálculo de porcentagem.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Funcionalidades atuais
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Operações básicas: soma, subtração, multiplicação e divisão.
+- Cálculo de porcentagem.
+- Botões para limpar (CA), apagar último dígito, e realizar o cálculo.
+- Interface responsiva e estilizada com Bootstrap 5 e CSS customizado.
+- Histórico simples de operações (menu de opções).
+- Resultados exibidos com precisão e em tempo real.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologias utilizadas
 
-### `npm run build`
+- React (biblioteca JavaScript para construção de interfaces).
+- Bootstrap 5 (framework CSS para layout e estilos).
+- CSS customizado para ajustes visuais.
+- JavaScript para lógica das operações.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Como rodar o projeto localmente
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Pré-requisitos
 
-### `npm run eject`
+- Node.js e npm instalados ([download aqui](https://nodejs.org/)).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Passos
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone o repositório:
+   ```bash´´
+   git clone <URL_DO_REPOSITORIO>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Acesse a pasta do projeto:
+``bash´´
+cd nome-da-pasta
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Instale as dependências:
+``bash´´
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+4. Inicie o servidor de desenvolvimento:
+``bash´´
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+5. Abra o navegador e acesse:
+http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+A calculadora estará rodando e pronta para uso.
 
-### Making a Progressive Web App
+### Evidências do funcionamento
+Calculadora principal
+![Calculadora](./src/assets/images/Calculadora.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Calculadora com opção de porcentagem
+![Calculadora](./src/assets/images/CalculadoraPorcentagem.png)
 
-### Advanced Configuration
+Menu de opções
+![Calculadora](./src/assets/images/CalculadoraOpções.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Próximas funcionalidades
+Este projeto está em constante evolução. Em breve, serão implementados novos tipos de cálculos, incluindo:
 
-### Deployment
+Cálculo de fatorial.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Funções trigonométricas (seno, cosseno, tangente).
 
-### `npm run build` fails to minify
+Operações com números decimais avançados.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Histórico completo das operações realizadas.
+
+### Considerações finais
+Este projeto demonstra o domínio das tecnologias React, Bootstrap e JavaScript para criar aplicações interativas e funcionais. A estrutura modular do código permite fácil manutenção e expansão das funcionalidades. A interface amigável e responsiva oferece uma boa experiência para o usuário.
+
+### Autor
+Gabriel Gonzaga De Oliveira - [[LinkedIn](https://www.linkedin.com/in/gabriel-gonzaga-dev/)]
