@@ -59,7 +59,7 @@ Este projeto é uma calculadora desenvolvida utilizando **React**, **Bootstrap 5
 
 5. Abra o navegador e acesse:
    ```bash´´
-http://localhost:3000
+   http://localhost:3000
 
 A calculadora estará rodando e pronta para uso.
 
