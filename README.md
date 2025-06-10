@@ -58,30 +58,35 @@ Este projeto é uma calculadora desenvolvida utilizando **React**, **Bootstrap 5
 
 
 5. Abra o navegador e acesse:
+   ```bash´´
 http://localhost:3000
 
 A calculadora estará rodando e pronta para uso.
 
 ### Evidências do funcionamento
-Calculadora principal
+
+### Calculadora principal
+
 ![Calculadora](./src/assets/images/Calculadora.png)
 
-Calculadora com opção de porcentagem
+### Calculadora com opção de porcentagem
+
 ![Calculadora](./src/assets/images/CalculadoraPorcentagem.png)
 
-Menu de opções
+### Menu de opções
+
 ![Calculadora](./src/assets/images/CalculadoraOpções.png)
 
 ### Próximas funcionalidades
 Este projeto está em constante evolução. Em breve, serão implementados novos tipos de cálculos, incluindo:
 
-Cálculo de fatorial.
+* Cálculo de fatorial.
 
-Funções trigonométricas (seno, cosseno, tangente).
+* Funções trigonométricas (seno, cosseno, tangente).
 
-Operações com números decimais avançados.
+* Operações com números decimais avançados.
 
-Histórico completo das operações realizadas.
+* Histórico completo das operações realizadas.
 
 ### Considerações finais
 Este projeto demonstra o domínio das tecnologias React, Bootstrap e JavaScript para criar aplicações interativas e funcionais. A estrutura modular do código permite fácil manutenção e expansão das funcionalidades. A interface amigável e responsiva oferece uma boa experiência para o usuário.
