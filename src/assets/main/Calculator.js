@@ -10,9 +10,9 @@ class Calculator extends Component {
     operation: null,
     waitingForNewNumber: false,
     history: [],
-    showModal: false,           // Modal de histórico
-    showPercentageModal: false, // Modal de porcentagem
-    showDropdown: false,        // Dropdown de opções
+    showModal: false,            // Modal de histórico
+    showPercentageModal: false,  // Modal de porcentagem
+    showDropdown: false,         // Dropdown de opções
 
     // Calculadora de porcentagem
     totalValue: '',
@@ -20,29 +20,9 @@ class Calculator extends Component {
     percentageResult: '',
   };
 
-  // === FUNÇÃO PARA ENVIAR MÉTRICAS ===
-  // Esta função envia um POST para seu backend leve
-  sendMetric = async (name, value, labels = {}) => {
-    try {
-      // ATENÇÃO: Verifique a porta do seu backend leve (3001 no exemplo)
-      await fetch('http://localhost:3001/metrics/push', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, value, labels }),
-      });
-      // console.log(`Métrica '${name}' enviada com sucesso!`); // Para depuração
-    } catch (error) {
-      console.error('Erro ao enviar métrica:', error);
-    }
-  };
-
   // === DROPDOWN ===
   toggleDropdown = () => {
     this.setState({ showDropdown: !this.state.showDropdown });
-    // Opcional: registrar abertura/fechamento do dropdown
-    this.sendMetric('dropdown_toggles_total', 1, { action: this.state.showDropdown ? 'close' : 'open' });
   };
 
   closeDropdown = () => {
@@ -52,7 +32,6 @@ class Calculator extends Component {
   // === HISTÓRICO ===
   handleOpenHistory = () => {
     this.setState({ showModal: true, showDropdown: false });
-    this.sendMetric('history_modal_opens_total', 1);
   };
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
@@ -61,35 +40,38 @@ class Calculator extends Component {
   // === PORCENTAGEM ===
   handleOpenPercentage = () => {
     this.setState({ showPercentageModal: true, showDropdown: false });
-    this.sendMetric('percentage_modal_opens_total', 1);
   };
   togglePercentageModal = () => {
     this.setState({ showPercentageModal: !this.state.showPercentageModal });
   };
 
+  // Botão "Limpar" na calculadora de porcentagem
   clearPercentage = () => {
     this.setState({
       totalValue: '',
       percentageValue: '',
       percentageResult: ''
     });
-    this.sendMetric('percentage_calculator_clears_total', 1);
   };
 
   calculatePercentage = () => {
+    // Converte valor total (remove pontos e troca vírgula por ponto, se quiser)
     const total = parseFloat(this.state.totalValue.replace(/\./g, '').replace(',', '.'));
     const pct = parseFloat(this.state.percentageValue.replace(/\./g, '').replace(',', '.'));
 
     if (isNaN(total) || isNaN(pct)) {
       this.setState({ percentageResult: 'Entrada inválida' });
-      this.sendMetric('percentage_calculation_total', 1, { status: 'invalid_input' });
       return;
     }
 
     const result = (total * pct) / 100;
+    // Formata com 2 casas decimais
     this.setState({ percentageResult: result.toFixed(2) });
-    this.sendMetric('percentage_calculation_total', 1, { status: 'success' });
   };
+
+ 
+
+
 
   // === LÓGICA CALCULADORA NORMAL ===
   clearMemory = () => {
@@ -99,7 +81,6 @@ class Calculator extends Component {
       operation: null,
       waitingForNewNumber: false,
     });
-    this.sendMetric('calculator_clears_total', 1);
   };
 
   backspace = () => {
@@ -108,7 +89,6 @@ class Calculator extends Component {
         prevState.displayValue.length > 1
           ? prevState.displayValue.slice(0, -1)
           : '0';
-      this.sendMetric('backspace_uses_total', 1);
       return { displayValue: newValue };
     });
   };
@@ -125,14 +105,12 @@ class Calculator extends Component {
         : displayValue + digit,
       waitingForNewNumber: false,
     });
-    this.sendMetric('digit_inputs_total', 1, { digit: digit });
   };
 
   addToHistory = (calcString) => {
     this.setState((prevState) => ({
       history: [...prevState.history, calcString],
     }));
-    this.sendMetric('calculation_added_to_history_total', 1);
   };
 
   setOperation = (operation) => {
@@ -145,18 +123,13 @@ class Calculator extends Component {
         operation,
         waitingForNewNumber: true,
       });
-      this.sendMetric('operation_selected_total', 1, { operation: operation });
     } else if (prevOperation) {
       let result = this.calculate(num1, currentValue, prevOperation);
-
+      // Ao concluir a operação com '=', adiciona ao histórico
       if (operation === '=') {
         const calcString = `${num1} ${prevOperation} ${currentValue} = ${result}`;
         this.addToHistory(calcString);
-        this.sendMetric('main_calculation_total', 1, { status: result === 'Erro' ? 'error' : 'success', operation: prevOperation });
-      } else {
-        this.sendMetric('operation_selected_total', 1, { operation: operation });
       }
-
       this.setState({
         displayValue: String(result),
         num1: operation === '=' ? null : result,
@@ -175,11 +148,7 @@ class Calculator extends Component {
       case '*':
         return num1 * num2;
       case '/':
-        if (num2 === 0) {
-          this.sendMetric('division_by_zero_errors_total', 1);
-          return 'Erro';
-        }
-        return num1 / num2;
+        return num2 !== 0 ? num1 / num2 : 'Erro';
       default:
         return num2;
     }
@@ -189,7 +158,6 @@ class Calculator extends Component {
     const parts = calcString.split('=');
     if (parts.length === 2) {
       this.setState({ displayValue: parts[1].trim(), waitingForNewNumber: true });
-      this.sendMetric('history_restorations_total', 1);
     }
   };
 
@@ -317,7 +285,7 @@ class Calculator extends Component {
                   onChange={(e) => this.setState({ percentageValue: e.target.value })}
                 />
               </div>
-                <div className="mt-3 mb-4">
+               <div className="mt-3 mb-4">
                 <strong>Resultado:</strong> {this.state.percentageResult}
               </div>
 
@@ -325,6 +293,9 @@ class Calculator extends Component {
                 Calcular
               </button>
 
+             
+
+              {/* Botão de limpar campos */}
               <button className="btn btn-danger mt-2" onClick={this.clearPercentage}>
                 Limpar
               </button>
@@ -335,6 +306,8 @@ class Calculator extends Component {
             </div>
           </div>
         )}
+
+        
 
         {/* Botões da calculadora principal */}
         <div className="row">
